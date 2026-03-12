@@ -55,13 +55,19 @@ export default function Work() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
         <SectionLabel>PORTFOLIO</SectionLabel>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6">
           Our Work
         </h1>
         <p className="text-xl text-muted-warm max-w-2xl mb-16">
           A selection of websites, stores, and experiences we've built for clients worldwide.
         </p>
+        </motion.div>
 
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-16">
@@ -92,7 +98,7 @@ export default function Work() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
               key={project.id}
               className="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-carbon border border-white/5"
             >

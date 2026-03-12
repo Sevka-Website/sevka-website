@@ -23,7 +23,7 @@ export default function Home() {
             &lt; Premium Web Studio /&gt;
           </motion.div>
 
-          <h1 className="font-display font-extrabold text-5xl md:text-7xl lg:text-[96px] leading-[1.1] tracking-[-0.03em] text-warm-white mb-8">
+          <h1 className="font-display font-extrabold text-[2.4rem] sm:text-5xl md:text-7xl lg:text-[96px] leading-[1.1] tracking-[-0.03em] text-warm-white mb-8 w-full">
             <span className="block overflow-hidden">
               <motion.span
                 initial={{ y: '100%' }}
@@ -96,19 +96,26 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="bg-carbon border border-gold/15 rounded-xl p-6 md:p-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-8 shadow-2xl"
+          className="bg-carbon border border-gold/15 rounded-xl shadow-2xl overflow-hidden"
         >
+          <div className="grid grid-cols-2 md:grid-cols-4">
           {[
             { label: 'Projects Delivered', value: '25+' },
             { label: 'Client Satisfaction', value: '98%' },
             { label: 'Years Experience', value: '5+' },
             { label: 'Clients Worldwide', value: 'India & Global' },
           ].map((stat, i) => (
-            <div key={i} className="flex flex-col gap-2 w-[45%] md:w-auto text-center md:text-left">
-              <span className="font-display text-3xl md:text-4xl font-bold text-warm-white">{stat.value}</span>
+            <div key={i} className={`flex flex-col gap-2 p-6 md:p-8 text-center md:text-left
+              ${i % 2 === 0 ? 'border-r border-gold/10' : ''}
+              ${i < 2 ? 'border-b border-gold/10 md:border-b-0' : ''}
+              ${i === 1 ? 'md:border-r md:border-gold/10' : ''}
+              ${i === 2 ? 'md:border-r md:border-gold/10' : ''}
+            `}>
+              <span className="font-display text-3xl md:text-4xl font-bold text-warm-white leading-none">{stat.value}</span>
               <span className="font-mono text-xs text-gold tracking-wider uppercase">{stat.label}</span>
             </div>
           ))}
+          </div>
         </motion.div>
       </section>
 
