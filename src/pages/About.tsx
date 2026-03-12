@@ -72,8 +72,7 @@ export default function About() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-void border border-white/5 p-10 rounded-2xl flex flex-col gap-6"
               >
@@ -113,8 +112,7 @@ export default function About() {
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="flex flex-col items-center gap-2.5 bg-[#111111] border border-gold/10 rounded-xl p-5 w-[110px] transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-[#1A1A1A] group"
             >

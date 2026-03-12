@@ -79,8 +79,7 @@ export default function Services() {
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="flex flex-col md:flex-row gap-12 items-start"
           >

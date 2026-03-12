@@ -103,8 +103,7 @@ export default function Process() {
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="relative flex flex-col md:flex-row items-start md:items-center w-full"
             >
