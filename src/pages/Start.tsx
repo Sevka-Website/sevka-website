@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 const SERVICE_ID = 'service_k2d48vk';
 const TEMPLATE_ID = '2fxwiaq';
-const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // ← Replace this
+const PUBLIC_KEY = 'sWBOKLfgF_zSKRdDg';
 
 export default function Start() {
   const [step, setStep] = useState(1);
