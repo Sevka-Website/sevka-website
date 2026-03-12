@@ -15,11 +15,11 @@ export default function Layout({ children }: { children: ReactNode }) {
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-grow pt-24" // pt-24 to account for fixed navbar
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="flex-grow pt-24"
         >
           {children}
         </motion.main>
