@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..1000;1,9..40,400..1000&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-void: #080808;
+  --color-carbon: #111111;
+  --color-raised: #1A1A1A;
+  --color-gold: #D4A843;
+  --color-gold-light: #E8C06A;
+  --color-gold-dim: rgba(212, 168, 67, 0.12);
+  --color-warm-white: #F4F0E8;
+  --color-muted-warm: #A09880;
+  --color-muted: #5A5445;
+  --color-pure-white: #FAFAF8;
+  --color-error: #E05A4B;
+  --color-success: #3DAA7D;
+
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-warm-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none; /* For custom cursor */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-carbon);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-raised);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-gold);
+  color: var(--color-void);
+}
+
+/* Gradients */
+.bg-gradient-gold {
+  background: linear-gradient(135deg, #D4A843 0%, #E8C06A 50%, #B8902A 100%);
+}
+.bg-gradient-surface {
+  background: linear-gradient(180deg, #111111 0%, #080808 100%);
+}
+.bg-gradient-glow {
+  background: radial-gradient(ellipse at center, rgba(212,168,67,0.15) 0%, transparent 70%);
+}
+.bg-gradient-hero {
+  background: linear-gradient(to bottom, transparent 60%, #080808 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4A843 0%, #E8C06A 50%, #B8902A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Hide custom cursor on mobile */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
