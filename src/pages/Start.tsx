@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import emailjs from '@emailjs/browser';
 import SectionLabel from '../components/SectionLabel';
 import Button from '../components/Button';
 import { CheckCircle2, MonitorSmartphone, ShoppingCart, LayoutTemplate, PenTool, Search, MoreHorizontal } from 'lucide-react';
 import clsx from 'clsx';
 
+const SERVICE_ID = 'service_k2d48vk';
+const TEMPLATE_ID = '2fxwiaq';
+const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // ← Replace this
+
 export default function Start() {
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  // Form State
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -43,12 +49,36 @@ export default function Start() {
   const nextStep = () => setStep(s => Math.min(s + 1, 3));
   const prevStep = () => setStep(s => Math.max(s - 1, 1));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
-    setTimeout(() => {
+    setIsLoading(true);
+    setError('');
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      business_name: formData.company || 'Not provided',
+      phone: formData.phone || 'Not provided',
+      country: formData.country,
+      existing_website: formData.website || 'Not provided',
+      project_type: formData.projectType,
+      budget: formData.budget,
+      timeline: formData.timeline,
+      project_details: formData.details,
+      how_found: formData.source,
+      references: formData.references || 'None',
+      additional_notes: formData.extra || 'None',
+    };
+
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
       setIsSubmitted(true);
-    }, 1000);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Something went wrong. Please try again or email us directly at abhishek.webstudio@gmail.com');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const projectTypes = [
@@ -83,7 +113,7 @@ export default function Start() {
           {/* Progress Bar */}
           {!isSubmitted && (
             <div className="absolute top-0 left-0 w-full h-1 bg-void">
-              <motion.div 
+              <motion.div
                 className="h-full bg-gold"
                 initial={{ width: '33%' }}
                 animate={{ width: `${(step / 3) * 100}%` }}
@@ -110,7 +140,7 @@ export default function Start() {
                       <SectionLabel>STEP 01/03</SectionLabel>
                       <h2 className="font-display text-3xl font-bold">About You & Your Project</h2>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
                         <label className="font-mono text-xs text-warm-white/60 uppercase tracking-wider">Full Name *</label>
@@ -158,8 +188,8 @@ export default function Start() {
                             onClick={() => handleProjectTypeSelect(pt.id)}
                             className={clsx(
                               "flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-300",
-                              formData.projectType === pt.id 
-                                ? "bg-gold/10 border-gold text-gold" 
+                              formData.projectType === pt.id
+                                ? "bg-gold/10 border-gold text-gold"
                                 : "bg-void border-white/10 text-warm-white/80 hover:border-white/30"
                             )}
                           >
@@ -177,21 +207,21 @@ export default function Start() {
                         <label className="font-mono text-xs text-warm-white/60 uppercase tracking-wider">Estimated Budget *</label>
                         <select required name="budget" value={formData.budget} onChange={handleInputChange} className="bg-void border border-white/10 rounded-lg px-4 py-3 text-warm-white focus:outline-none focus:border-gold transition-colors appearance-none">
                           <option value="" disabled>Select a range</option>
-                          <option value="under_300">Under ₹25,000 / $300</option>
-                          <option value="300_900">₹25,000–₹75,000 / $300–$900</option>
-                          <option value="900_2500">₹75,000–₹2,00,000 / $900–$2,500</option>
-                          <option value="over_2500">₹2,00,000+ / $2,500+</option>
-                          <option value="unsure">Not sure yet</option>
+                          <option value="Under ₹25,000 / $300">Under ₹25,000 / $300</option>
+                          <option value="₹25,000–₹75,000 / $300–$900">₹25,000–₹75,000 / $300–$900</option>
+                          <option value="₹75,000–₹2,00,000 / $900–$2,500">₹75,000–₹2,00,000 / $900–$2,500</option>
+                          <option value="₹2,00,000+ / $2,500+">₹2,00,000+ / $2,500+</option>
+                          <option value="Not sure yet">Not sure yet</option>
                         </select>
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="font-mono text-xs text-warm-white/60 uppercase tracking-wider">Timeline *</label>
                         <select required name="timeline" value={formData.timeline} onChange={handleInputChange} className="bg-void border border-white/10 rounded-lg px-4 py-3 text-warm-white focus:outline-none focus:border-gold transition-colors appearance-none">
                           <option value="" disabled>Select timeline</option>
-                          <option value="asap">ASAP (within 2 weeks)</option>
-                          <option value="1_2_months">1–2 months</option>
-                          <option value="2_4_months">2–4 months</option>
-                          <option value="flexible">Flexible / no rush</option>
+                          <option value="ASAP (within 2 weeks)">ASAP (within 2 weeks)</option>
+                          <option value="1–2 months">1–2 months</option>
+                          <option value="2–4 months">2–4 months</option>
+                          <option value="Flexible / no rush">Flexible / no rush</option>
                         </select>
                       </div>
                     </div>
@@ -215,11 +245,11 @@ export default function Start() {
                       <label className="font-mono text-xs text-warm-white/60 uppercase tracking-wider">How did you find us? *</label>
                       <select required name="source" value={formData.source} onChange={handleInputChange} className="bg-void border border-white/10 rounded-lg px-4 py-3 text-warm-white focus:outline-none focus:border-gold transition-colors appearance-none">
                         <option value="" disabled>Select an option</option>
-                        <option value="google">Google Search</option>
-                        <option value="social">Instagram / Social Media</option>
-                        <option value="referral">Referral from someone</option>
-                        <option value="direct">Direct / I knew about Sevka</option>
-                        <option value="other">Other</option>
+                        <option value="Google Search">Google Search</option>
+                        <option value="Instagram / Social Media">Instagram / Social Media</option>
+                        <option value="Referral from someone">Referral from someone</option>
+                        <option value="Direct / I knew about Sevka">Direct / I knew about Sevka</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
 
@@ -242,6 +272,13 @@ export default function Start() {
                         I agree to be contacted via email/phone regarding my project.
                       </span>
                     </label>
+
+                    {/* Error Message */}
+                    {error && (
+                      <div className="bg-error/10 border border-error/30 rounded-lg px-4 py-3 text-sm text-error">
+                        {error}
+                      </div>
+                    )}
                   </>
                 )}
 
@@ -252,11 +289,17 @@ export default function Start() {
                       &larr; Back
                     </button>
                   ) : <div />}
-                  
+
                   {step < 3 ? (
                     <Button type="submit" variant="primary">Next Step &rarr;</Button>
                   ) : (
-                    <Button type="submit" variant="primary" className="w-full sm:w-auto px-12">Send My Project Brief &rarr;</Button>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      className="w-full sm:w-auto px-12"
+                    >
+                      {isLoading ? 'Sending...' : 'Send My Project Brief →'}
+                    </Button>
                   )}
                 </div>
               </motion.form>
@@ -272,7 +315,8 @@ export default function Start() {
                 </div>
                 <h2 className="font-display text-4xl font-bold mb-4">Brief Received!</h2>
                 <p className="text-lg text-muted-warm max-w-md">
-                  Thank you for reaching out. We've received your project details and will get back to you at <span className="text-warm-white font-medium">abhishek.webstudio@gmail.com</span> within 24 hours.
+                  Thank you for reaching out. We've received your project details and will get back to you at{' '}
+                  <span className="text-warm-white font-medium">abhishek.webstudio@gmail.com</span> within 24 hours.
                 </p>
               </motion.div>
             )}
