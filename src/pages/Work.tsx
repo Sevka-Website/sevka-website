@@ -9,7 +9,7 @@ const projects = [
     id: 'claradent',
     title: 'ClaraDent Dental Clinic',
     category: 'Corporate Sites',
-    image: 'https://images.unsplash.com/photo-1609840112855-ef2a4b339bd2?w=800&q=80',
+    image: 'https://picsum.photos/seed/claradent/800/500',
     tags: ['Healthcare', 'Booking System', 'Landing Page'],
     description: 'A premium dental clinic website with appointment booking, service showcase, doctor profiles, and patient testimonials.',
     liveUrl: 'https://clinckhtml.netlify.app/',
