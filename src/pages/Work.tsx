@@ -1,45 +1,19 @@
 import { motion } from 'motion/react';
 import SectionLabel from '../components/SectionLabel';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 
 const projects = [
   {
-    id: 'shopflow',
-    title: 'ShopFlow Commerce',
-    category: 'E-Commerce',
-    image: 'https://picsum.photos/seed/shopflow/800/600',
-    tags: ['Shopify', 'Custom Design'],
-  },
-  {
-    id: 'venture',
-    title: 'Venture Capital Firm',
+    id: 'claradent',
+    title: 'ClaraDent Dental Clinic',
     category: 'Corporate Sites',
-    image: 'https://picsum.photos/seed/venture/800/600',
-    tags: ['Webflow', 'Animations'],
-  },
-  {
-    id: 'lumina',
-    title: 'Lumina Beauty',
-    category: 'E-Commerce',
-    image: 'https://picsum.photos/seed/lumina/800/600',
-    tags: ['WooCommerce', 'Branding'],
-  },
-  {
-    id: 'fintech',
-    title: 'Fintech App Landing',
-    category: 'Landing Pages',
-    image: 'https://picsum.photos/seed/fintech/800/600',
-    tags: ['React', 'Framer Motion'],
-  },
-  {
-    id: 'studio',
-    title: 'Architecture Studio',
-    category: 'Custom Builds',
-    image: 'https://picsum.photos/seed/studio/800/600',
-    tags: ['Next.js', 'Minimalist'],
+    image: 'https://images.unsplash.com/photo-1609840112855-ef2a4b339bd2?w=800&q=80',
+    tags: ['Healthcare', 'Booking System', 'Landing Page'],
+    description: 'A premium dental clinic website with appointment booking, service showcase, doctor profiles, and patient testimonials.',
+    liveUrl: 'https://clinckhtml.netlify.app/',
+    year: '2025',
   },
 ];
 
@@ -48,29 +22,36 @@ const categories = ['All', 'E-Commerce', 'Landing Pages', 'Corporate Sites', 'Cu
 export default function Work() {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(p => p.category === activeFilter);
 
   return (
     <div className="flex flex-col w-full min-h-screen">
       <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+
+        {/* Page Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-        <SectionLabel>PORTFOLIO</SectionLabel>
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6">
-          Our Work
-        </h1>
-        <p className="text-xl text-muted-warm max-w-2xl mb-16">
-          A selection of websites, stores, and experiences we've built for clients worldwide.
-        </p>
+          <SectionLabel>PORTFOLIO</SectionLabel>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6">
+            Our Work
+          </h1>
+          <p className="text-xl text-muted-warm max-w-2xl mb-16">
+            A selection of websites, stores, and experiences we've built for clients worldwide.
+          </p>
         </motion.div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="flex flex-wrap gap-4 mb-16"
+        >
           {categories.map((cat) => (
             <button
               key={cat}
@@ -85,54 +66,135 @@ export default function Work() {
               {cat}
             </button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        >
-          {filteredProjects.map((project, i) => (
-            <motion.div
-              layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              key={project.id}
-              className="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-carbon border border-white/5"
-            >
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 flex flex-col gap-4">
-                  <h3 className="font-display text-3xl font-bold text-warm-white">{project.title}</h3>
+        {/* Projects Grid */}
+        {filteredProjects.length > 0 ? (
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {filteredProjects.map((project, i) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                key={project.id}
+                className="group relative overflow-hidden rounded-2xl bg-carbon border border-white/5 flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden aspect-[16/10]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-void/90 via-void/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Year badge */}
+                  <div className="absolute top-4 right-4 bg-void/80 backdrop-blur-sm border border-white/10 px-3 py-1 rounded-full">
+                    <span className="font-mono text-xs text-gold">{project.year}</span>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="p-8 flex flex-col gap-4 flex-grow">
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-mono text-warm-white uppercase tracking-wider">
+                    <span className="px-3 py-1 bg-gold/10 border border-gold/20 rounded-full text-xs font-mono text-gold uppercase tracking-wider">
                       {project.category}
                     </span>
                     {project.tags.map(tag => (
-                      <span key={tag} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-mono text-warm-white uppercase tracking-wider">
+                      <span key={tag} className="px-3 py-1 border border-white/10 rounded-full text-xs font-mono text-warm-white/50 uppercase tracking-wider">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <Link 
-                    to={`/work/${project.id}`} 
-                    className="mt-4 inline-flex items-center gap-2 text-gold font-semibold hover:gap-4 transition-all w-fit"
+
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-warm-white">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-muted-warm text-sm leading-relaxed flex-grow">
+                    {project.description}
+                  </p>
+
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-gold font-semibold hover:gap-4 transition-all w-fit mt-2 group/link"
                   >
-                    View Project <ArrowRight size={18} />
-                  </Link>
+                    View Live Project
+                    <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />
+                  </a>
                 </div>
+              </motion.div>
+            ))}
+
+            {/* Coming Soon Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="relative overflow-hidden rounded-2xl border border-white/5 border-dashed flex flex-col items-center justify-center p-12 aspect-[16/10] md:aspect-auto min-h-[300px]"
+            >
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-16 h-16 rounded-full border border-gold/20 flex items-center justify-center">
+                  <span className="text-gold text-2xl font-light">+</span>
+                </div>
+                <h3 className="font-display text-xl font-bold text-warm-white/40">More Coming Soon</h3>
+                <p className="text-muted text-sm max-w-xs">
+                  New projects are added as they launch. Working on something great right now.
+                </p>
               </div>
             </motion.div>
-          ))}
+          </motion.div>
+        ) : (
+          /* Empty state when filter has no results */
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-32 text-center"
+          >
+            <div className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center mb-6">
+              <span className="text-warm-white/20 text-2xl">∅</span>
+            </div>
+            <h3 className="font-display text-2xl font-bold text-warm-white/30 mb-3">No projects yet in this category</h3>
+            <p className="text-muted text-sm">Check back soon — more work is on the way.</p>
+            <button
+              onClick={() => setActiveFilter('All')}
+              className="mt-8 text-gold font-semibold text-sm hover:underline"
+            >
+              View all projects →
+            </button>
+          </motion.div>
+        )}
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-24 px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-2xl mx-auto"
+        >
+          <SectionLabel>WORK WITH US</SectionLabel>
+          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-6 mt-3">
+            Want to be our next project?
+          </h2>
+          <p className="text-muted-warm mb-10">
+            We're selective about the projects we take on — which means every client gets our full attention.
+          </p>
+          <a
+            href="/start"
+            className="inline-flex items-center gap-2 bg-gold text-void px-8 py-4 rounded-lg font-semibold text-base hover:bg-gold-light transition-colors"
+          >
+            Start a Project <ArrowRight size={18} />
+          </a>
         </motion.div>
       </section>
     </div>
