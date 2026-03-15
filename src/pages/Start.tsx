@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 // ✅ REPLACE YOUR_PUBLIC_KEY with key from dashboard.emailjs.com/admin/account
 const SERVICE_ID = 'service_k2d48vk';
-const TEMPLATE_ID = '2fxwiaq';
+const TEMPLATE_ID = 'template_jwhg2x1';
 const PUBLIC_KEY = 'JNt4FpIbLeAEyUatE'; // ← ONLY THING YOU NEED TO CHANGE
 
 export default function Start() {
