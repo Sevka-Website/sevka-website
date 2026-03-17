@@ -66,11 +66,11 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
         )}
 
         {/* ── Central content ── */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-8 flex flex-col items-center">
+        <div className="relative z-10 w-full mx-auto px-6 sm:px-10 flex flex-col items-center" style={{ maxWidth: 'min(900px, 100%)' }}>
 
           {/* Gold line top */}
           <motion.div
-            className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent mb-16"
+            className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#D4A843] to-transparent mb-12"
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -78,7 +78,7 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
 
           {/* Index number */}
           <motion.div
-            className="font-mono text-[#D4A843] text-xs tracking-[0.4em] uppercase mb-6"
+            className="font-mono text-[#D4A843] text-xs tracking-[0.4em] uppercase mb-5"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -86,10 +86,11 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
             Project — {project.index}
           </motion.div>
 
-          {/* Main title */}
-          <div className="overflow-hidden mb-3 w-full text-center">
+          {/* Main title — scales to always fit on screen */}
+          <div className="overflow-y-hidden overflow-x-clip mb-3 w-full text-center">
             <motion.h1
-              className="font-display font-extrabold text-[clamp(3rem,10vw,8rem)] leading-none tracking-[-0.03em] text-[#F4F0E8] uppercase"
+              className="font-display font-extrabold leading-none tracking-[-0.02em] text-[#F4F0E8] uppercase w-full"
+              style={{ fontSize: 'clamp(2.2rem, 10vw, 6.5rem)' }}
               initial={{ y: '110%' }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -100,7 +101,7 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
 
           {/* Subtitle */}
           <motion.p
-            className="font-mono text-[#A09880] text-sm tracking-[0.3em] uppercase mt-4"
+            className="font-mono text-[#A09880] text-xs sm:text-sm tracking-[0.25em] uppercase mt-4 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.0 }}
@@ -137,7 +138,7 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
         </div>
 
         {/* ── Corner decorations ── */}
-        {['top-8 left-8', 'top-8 right-8', 'bottom-8 left-8', 'bottom-8 right-8'].map((pos, i) => (
+        {['top-4 left-4 sm:top-8 sm:left-8', 'top-4 right-4 sm:top-8 sm:right-8', 'bottom-4 left-4 sm:bottom-8 sm:left-8', 'bottom-4 right-4 sm:bottom-8 sm:right-8'].map((pos, i) => (
           <motion.div
             key={i}
             className={`absolute ${pos} w-6 h-6 border-[#D4A843]/30`}
