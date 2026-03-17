@@ -15,7 +15,7 @@ function ClaraDentScrollTop() {
 
 export default function ClaraDentApp() {
   return (
-    <div className="min-h-screen flex flex-col" style={{ fontFamily: '"DM Sans", sans-serif', backgroundColor: '#ffffff', color: '#0D1B2A' }}>
+    <div className="min-h-screen flex flex-col" style={{ fontFamily: '"DM Sans", sans-serif', backgroundColor: '#ffffff', color: '#0D1B2A', cursor: 'auto' }}>
       <ClaraDentScrollTop />
       {/* Independent navbar — NO Sevka navbar */}
       <ClaraDentNavbar />

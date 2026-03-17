@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Twitter, MessageCircle } from 'lucide-react';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,7 +11,6 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
 
-          {/* Brand */}
           <div className="md:col-span-1 flex flex-col gap-5">
             <Link to="/" className="flex items-center gap-1 group w-fit">
               <span className="font-display font-bold text-2xl tracking-tight text-warm-white">SEVKA</span>
@@ -20,10 +19,6 @@ export default function Footer() {
             <p className="text-muted-warm text-sm leading-relaxed">
               Premium web studio crafting high-performance websites for businesses across India and beyond.
             </p>
-            <a href="https://wa.me/919820000000" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 rounded-lg text-[#25D366] text-sm font-semibold hover:bg-[#25D366]/20 transition-colors w-fit">
-              <MessageCircle size={16} /> Chat on WhatsApp
-            </a>
             <div className="flex items-center gap-4 mt-2">
               <a href="#" className="text-muted-warm hover:text-gold transition-colors" aria-label="LinkedIn"><Linkedin size={20} /></a>
               <a href="#" className="text-muted-warm hover:text-gold transition-colors" aria-label="Instagram"><Instagram size={20} /></a>
