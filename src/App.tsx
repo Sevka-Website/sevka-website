@@ -11,6 +11,7 @@ import Services from './pages/Services';
 import Process from './pages/Process';
 import About from './pages/About';
 import Start from './pages/Start';
+import ClaraDentApp from './projects/claradent/ClaraDentApp';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,16 +25,27 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/start" element={<Start />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Project sub-sites — completely independent layouts */}
+        <Route path="/work/claradent/*" element={<ClaraDentApp />} />
+
+        {/* Main Sevka site */}
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/process" element={<Process />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/start" element={<Start />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
