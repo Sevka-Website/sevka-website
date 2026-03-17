@@ -98,7 +98,7 @@ export default function ClaraDentHome() {
           <div className="relative hidden md:block">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]">
               <img
-                src="https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=800&q=85"
+                src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&q=85"
                 alt="ClaraDent dental clinic"
                 className="w-full h-full object-cover"
               />
