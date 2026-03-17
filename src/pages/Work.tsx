@@ -14,7 +14,7 @@ const projects = [
   },
   {
     id: 'novaacademy', title: 'NovaAcademy Coaching Institute', category: 'Corporate Sites',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80',
     tags: ['Education', 'Lead Generation', 'Multi-page'],
     description: 'A high-converting coaching institute website for JEE & NEET preparation with course listings, faculty showcase, and demo booking flow.',
     route: '/work/novaacademy', year: '2025', transitionTitle: 'NovaAcademy', transitionSubtitle: 'Coaching Institute', transitionIndex: '02',
