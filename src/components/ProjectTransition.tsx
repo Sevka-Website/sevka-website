@@ -86,11 +86,11 @@ export default function ProjectTransition({ project, onComplete }: ProjectTransi
             Project — {project.index}
           </motion.div>
 
-          {/* Main title — scales to always fit on screen */}
-          <div className="overflow-y-hidden overflow-x-clip mb-3 w-full text-center">
+          {/* Main title — always fits, never clips */}
+          <div className="w-full text-center mb-3 px-4" style={{ overflow: 'hidden' }}>
             <motion.h1
-              className="font-display font-extrabold leading-none tracking-[-0.02em] text-[#F4F0E8] uppercase w-full"
-              style={{ fontSize: 'clamp(2.2rem, 10vw, 6.5rem)' }}
+              className="font-display font-extrabold leading-none text-[#F4F0E8] uppercase whitespace-nowrap"
+              style={{ fontSize: 'clamp(1.8rem, 7vw, 5rem)', letterSpacing: '-0.02em' }}
               initial={{ y: '110%' }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
